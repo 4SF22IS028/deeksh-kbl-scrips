@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: cart-page-rs
+  namespace: deekshitha-ns
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      web: cart
+  template: #it defines which application that we have to deploy in a cluster
+    metadata:
+      labels:
+        web: cart
+    spec: # it defines behaviour of the port and its container
+      containers:
+        - name: cart-container
+          image: muralisocial123/cart-page-test:1.0
+          ports:
+            - containerPort: 3000
